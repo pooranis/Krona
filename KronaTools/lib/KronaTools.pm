@@ -2002,7 +2002,10 @@ sub dataHeader
 			"valueStart=\"$valueStart\" valueEnd=\"$valueEnd\" " .
 			"default=\"$colorDefault\" " .
 			"></color>\n";
-	}
+	      } else {
+		my $hoffset = rand();
+		 $header .= indent(3) . "<hoffset hoffset=$hoffset></color>\n";
+	      }
 	
 	return $header;
 }
