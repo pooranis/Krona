@@ -196,13 +196,14 @@ var historyAlphaDelta = .25;
 //
 var lineOpacity = 0.3;
 var saturation = 0.9;
-var lightnessBase = 0.3;
+var lightnessBase = 0.75;
 var lightnessMax = .8;
 var thinLineWidth = .6;
 var highlightLineWidth = 1.5;
 var labelBoxBuffer = 6;
 var labelBoxRounding = 15;
-var hoffset = Math.random();
+var hoffset = 0.7;
+var hoffsetelement 
 var labelWidthFudge = 1.05; // The width of unshortened labels are set slightly
 							// longer than the name width so the animation
 							// finishes faster.
@@ -3215,7 +3216,7 @@ function Node()
 			(
 				hueMin,
 				saturation,
-				lightness
+			        lightness
 			);
 
 			this.r.setTarget(rgb.r);
@@ -4647,7 +4648,7 @@ function hslText(hue)
 	{
 		// Safari doesn't seem to allow hsl() in SVG
 
-		var rgb = hslToRgb(hue, saturation, (lightnessBase + lightnessMax) / 2);
+	        var rgb = hslToRgb(hue, saturation, (lightnessBase + lightnessMax) / 2, 0);
 
 		return rgbText(rgb.r, rgb.g, rgb.b);
 	}
@@ -4735,7 +4736,7 @@ function interpolateHue(hueStart, hueEnd, valueStart, valueEnd)
 	hueStopText = new Array();
 
 	hueStopPositions.push(0);
-	hueStopHsl.push(hslText(hueStart));
+        hueStopHsl.push(hslText(hueStart));
 	hueStopText.push(round(valueStart));
 
 	for
@@ -4753,7 +4754,7 @@ function interpolateHue(hueStart, hueEnd, valueStart, valueEnd)
 		)
 		{
 			hueStopPositions.push(lerp(i, hueStart, hueEnd, 0, 1));
-			hueStopHsl.push(hslText(i));
+      		        hueStopHsl.push(hslText(i));
 			hueStopText.push(round(lerp
 			(
 				i,
@@ -4766,7 +4767,7 @@ function interpolateHue(hueStart, hueEnd, valueStart, valueEnd)
 	}
 
 	hueStopPositions.push(1);
-	hueStopHsl.push(hslText(hueEnd));
+        hueStopHsl.push(hslText(hueEnd));
 	hueStopText.push(round(valueEnd));
 }
 
@@ -4983,7 +4984,6 @@ function load()
 					}
 				}
 				break;
-
 			case 'color':
 				hueName = element.getAttribute('attribute');
 				hueStart = Number(element.getAttribute('hueStart')) / 360;
@@ -4991,7 +4991,7 @@ function load()
 				valueStart = Number(element.getAttribute('valueStart'));
 				valueEnd = Number(element.getAttribute('valueEnd'));
 				//
-				interpolateHue(hueStart, hueEnd, valueStart, valueEnd);
+                      	        interpolateHue(hueStart, hueEnd, valueStart, valueEnd);
 				//
 				if ( element.getAttribute('default') == 'true' )
 				{

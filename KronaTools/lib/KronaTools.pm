@@ -1900,9 +1900,9 @@ sub dataHeader
 		$valueEnd,
 		$supp
 	) = @_;
-	
-	my $header =
-	indent(2) . '<krona collapse="' . ($options{'collapse'} ? 'true' : 'false') .
+	my $hoffset = rand();
+	my $header = indent(1) . '<hoffset hoffset=$hoffset></hoffset>\n';
+	$header .= indent(2) . '<krona collapse="' . ($options{'collapse'} ? 'true' : 'false') .
 	'" key="' . ($options{'key'} ? 'true' : 'false') . "\">\n" .
 	indent(3) . "<attributes magnitude=\"$magName\">\n";
 	
@@ -2002,9 +2002,6 @@ sub dataHeader
 			"valueStart=\"$valueStart\" valueEnd=\"$valueEnd\" " .
 			"default=\"$colorDefault\" " .
 			"></color>\n";
-	      } else {
-		my $hoffset = rand();
-		 $header .= indent(3) . "<hoffset hoffset=$hoffset></color>\n";
 	      }
 	
 	return $header;
